@@ -1,0 +1,14 @@
+[project]
+authors = ["jgallowa07 <jaredgalloway07@gmail.com>"]
+channels = ["conda-forge", "bioconda"]
+name = "jared"
+platforms = ["osx-64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+conda = ">=25.3.1,<26"
+
+[pypi-dependencies]
+snakemake = ">=9.3.3, <10"

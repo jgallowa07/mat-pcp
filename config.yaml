@@ -1,0 +1,30 @@
+# Configuration file for pipeline
+
+# List matutils pre-built mutation-annotated tree. We do the analysis for each tree and put
+# in a subdirectory called `results_{mat}` where `{mat}` is the name of that tree.
+# The most recent public trees are at
+# http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/
+mat_trees:
+
+  #Current:
+  GISAID-chron-5k-wo-mp-ref-2024-10-01:
+    mat: ../data/mat_trees/gisaidAndPublic.2025-02-12.masked.pb.gz 
+    meta: ../data/mat_trees/gisaidAndPublic.2025-02-12.metadata.tsv.gz 
+
+qc_filter_options:
+  invalid_date_resolutions: ["MISSING", "MONTH", "YEAR"]
+  min_date: "2019-12-01"
+  valid_hosts: ["Human", "Homo sapiens"]
+  missing_host_is_valid: True
+  min_genome_length: 28000
+  max_genome_length: 32000
+
+# Reference GTF and FASTA, and location of spike coding sequence
+ref_fasta: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz
+ref_gtf: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz
+
+# Reference secondary rna structure for paired/unpaired sites
+# secondary_struct: data/sars2-secondary-structure/41467_2022_28603_MOESM11_ESM.txt
+
+# Sequence context aware rates table.
+# rates_table: data/master_table_all_tree.csv
