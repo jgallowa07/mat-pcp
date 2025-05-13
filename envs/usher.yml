@@ -1,9 +1,0 @@
-channels:
-  - https://prefix.dev/bioconda
-  - https://prefix.dev/conda-forge
-channel_priority: strict
-
-
-dependencies:
-  - python=3.9
-  - usher
