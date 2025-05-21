@@ -12,6 +12,7 @@ parser.add_argument("fasta_path", help="Path to the fasta file")
 parser.add_argument("gtf_path", help="Path to the gtf file")
 parser.add_argument("all_pcps_path", help="Path to write out all pcps")
 
+
 def load_reference_from_fasta(reference_file):
     """
     Provided a path to a fasta file containing a single sequence, load that sequence
@@ -22,17 +23,19 @@ def load_reference_from_fasta(reference_file):
         reference_seq = "".join(map(str.strip, fh))
     return reference_seq
 
-def apply_muts(sequence, muts):        
-    """                                                                       
+
+def apply_muts(sequence, muts):
+    """
     Return the sequence after applying mutations.
-                                       
-    Args:                                                                     
+
+    Args:
         sequence (str): The sequence.
         muts (dict): A dictionary of mutations. The keys are integers for the site of a
             mutation (site indices start at 1); the values are strings for the resulting
             nucleotide at the site. For example, muts[25] = 'G' indicates a mutation
             resulting in 'G' at site 25 (which is at index 24 of sequence).
     """
+
     if len(muts) == 0:
         return sequence
     sites = sorted(muts.keys())
@@ -46,6 +49,7 @@ def apply_muts(sequence, muts):
     substrings.append(sequence[sites[-1] :])
 
     return "".join(substrings)
+
 
 class PCPHelper:
     """Helper class to write out PCP's passing a filter from a tree."""
@@ -64,7 +68,6 @@ class PCPHelper:
         self.n_nodes = len(self.nodes)
         self.n_int_nodes = len(self.int_nodes)
         self.ref_seq = load_reference_from_fasta(fasta_path)
-
 
     def fails_filters(self, nt_muts, codon_muts):
         fail = len(nt_muts) > 4
@@ -114,15 +117,17 @@ class PCPHelper:
     def pcp_list_to_df(self, pcps, gene_slice_boundaries=(21563, 25381)):
         def mut_dict(muts):
             return {int(mut[1:-1]): mut[-1] for mut in muts}
+
         def child_seq(seq, muts):
             return apply_muts(seq, mut_dict(muts))
+
         def slice_seq(seq):
             return (
-                seq 
-                if gene_slice_boundaries is None 
+                seq
+                if gene_slice_boundaries is None
                 else seq[gene_slice_boundaries[0] - 1 : gene_slice_boundaries[1]]
             )
-        
+
         cols = ["parent_name", "child_name", "parent", "child", "branch_length"]
         rows = (
             (p_id, c_id, slice_seq(p_seq), slice_seq(child_seq(p_seq, c_muts)), len(c_muts))
@@ -130,7 +135,7 @@ class PCPHelper:
             for c_id, c_muts in child_entries
         )
         # TODO, are we not wasting memory by converting to DF instead of writing out to the
-        # csv directly? 
+        # csv directly?
         the_df = DF(rows, columns=cols)
         return the_df
 
@@ -164,7 +169,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     write_pcps(
         args.tree_path,
-        args.fasta_path, 
-        args.gtf_path, 
+        args.fasta_path,
+        args.gtf_path,
         args.all_pcps_path
     )

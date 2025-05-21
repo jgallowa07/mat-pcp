@@ -1,0 +1,10 @@
+channels:
+  - https://repo.prefix.dev/conda-forge
+  - https://repo.prefix.dev/bioconda
+
+dependencies:
+  - python=3.9
+  - seaborn
+  - pandas
+  - nbconvert
+  - notebook
