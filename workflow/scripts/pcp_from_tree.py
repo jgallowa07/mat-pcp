@@ -122,6 +122,11 @@ class PCPHelper:
             return apply_muts(seq, mut_dict(muts))
 
         def slice_seq(seq):
+            """
+            Slice the sequence to get the region of interest.
+            Grab an extra base at the start and end to account for the fact that
+            we need sequence context when computing csp's.
+            """
             return (
                 seq
                 if gene_slice_boundaries is None

@@ -6,8 +6,8 @@
 # http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/
 mat_trees:
   Feb-12-2025:
-    mat: ../data/mat_trees/gisaidAndPublic.2025-02-12.masked.pb.gz 
-    meta: ../data/mat_trees/gisaidAndPublic.2025-02-12.metadata.tsv.gz 
+    mat: mat_trees/gisaidAndPublic.2025-02-12.masked.pb.gz 
+    meta: mat_trees/gisaidAndPublic.2025-02-12.metadata.tsv.gz 
 
 qc_filter_options:
   invalid_date_resolutions: ["MISSING", "MONTH", "YEAR"]
