@@ -1,6 +1,6 @@
 # `mat-pcp`
 
-A simple pipeline for filtering, optimizing, and extraction pcp's from a MAT tree.
+A simple pipeline for filtering, optimizing, and extraction pcp's from a MAT tree. Currently, this pipeline is confined to the SCV2 tree and extracts the spike gene - but is easy to generalize if/when we're ready.
 
 ## Running the pipeline 
 
